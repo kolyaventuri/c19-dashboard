@@ -1,8 +1,7 @@
-import { AppProps } from 'next/dist/next-server/lib/router/router';
+import * as React from 'react';
+import {AppProps} from 'next/dist/next-server/lib/router/router';
 import '../styles/index.scss';
 
-function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const App = ({Component, pageProps}: AppProps): JSX.Element => <Component {...pageProps} />;
 
 export default App;

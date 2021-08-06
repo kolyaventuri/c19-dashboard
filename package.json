@@ -9,8 +9,7 @@
     "test:unit": "exit 0",
     "lint": "npm-run-all lint:*",
     "lint:tsc": "tsc --noEmit",
-    "lint:lint": "xo --fix",
-    "lint:style": "stylelint src/styles/**/*.scss",
+    "lint:lint": "xo --fix"
     "dev": "cross-env ENV=local next -p 4000",
     "build:files": "next build",
     "build:export": "next export",
@@ -148,7 +147,8 @@
   "dependencies": {
     "next": "^11.0.1",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-simple-maps": "^2.3.0"
   },
   "devDependencies": {
     "@ava/babel": "^2.0.0",

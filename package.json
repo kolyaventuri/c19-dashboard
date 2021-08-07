@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "test": "npm-run-all lint:* test:*",
     "test:unit": "exit 0",
     "lint": "npm-run-all lint:*",
     "lint:tsc": "tsc --noEmit",
     "lint:lint": "xo --fix",
-    "dev": "cross-env ENV=local next -p 4000",
-    "build": "next build"
+    "local": "next dev -p 4000"
   },
   "repository": {
     "type": "git",

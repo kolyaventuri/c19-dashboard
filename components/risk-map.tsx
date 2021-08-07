@@ -63,8 +63,8 @@ const RiskMap = (): JSX.Element => {
     }
   }, [data, didError, date]);
 
-  const onChange = (value: string) => {
-    setDate(value);
+  const onChange = (value: string | number) => {
+    setDate(value as string);
   }
 
   if (didError) {

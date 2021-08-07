@@ -1,15 +1,17 @@
 import React from 'react';
 import Head from 'next/head';
 
+import RiskMap from '../components/risk-map';
+
 class Home extends React.Component {
   render(): JSX.Element {
     return (
       <div>
         <Head>
-          <title>Amplify App</title>
+          <title>Covid Data</title>
         </Head>
         <section className="section">
-          <h1>Amplify App</h1>
+          <RiskMap />
         </section>
       </div>
     );

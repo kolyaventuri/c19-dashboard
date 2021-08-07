@@ -9,7 +9,7 @@ applications:
           commands:
             - ENV=$BUILD_ENV npm run build
       artifacts:
-        baseDirectory: .next
+        baseDirectory: out
         files:
           - '**/*'
       cache:

@@ -5,7 +5,6 @@ applications:
         preBuild:
           commands:
             - npm install
-            - npm test
         build:
           commands:
             - ENV=$BUILD_ENV npm run build

@@ -26,7 +26,7 @@
   "homepage": "https://github.com/kolyaventuri/amplify-template#readme",
   "lint-staged": {
     "**/*.ts?(x)": [
-      "tsc --noEmit --esModuleInterop --jsx react",
+      "tsc --noEmit --esModuleInterop --jsx react --resolveJsonModule",
       "xo --fix"
     ],
     "**/*.scss": [

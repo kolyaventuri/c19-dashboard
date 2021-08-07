@@ -2,7 +2,7 @@ import React from 'react';
 import test from 'ava';
 import {shallow} from 'enzyme';
 
-import Home from '../../src/pages';
+import Home from '../../pages';
 
 const getComponent = () => shallow(<Home />);
 

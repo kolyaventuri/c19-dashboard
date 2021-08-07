@@ -11,8 +11,7 @@
     "lint:tsc": "tsc --noEmit",
     "lint:lint": "xo --fix",
     "dev": "cross-env ENV=local next -p 4000",
-    "build:files": "next build",
-    "build": "npm-run-all build:*"
+    "build": "next build"
   },
   "repository": {
     "type": "git",

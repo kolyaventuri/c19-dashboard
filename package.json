@@ -12,7 +12,6 @@
     "lint:lint": "xo --fix",
     "dev": "cross-env ENV=local next -p 4000",
     "build:files": "next build",
-    "build:export": "next export",
     "build": "npm-run-all build:*"
   },
   "repository": {

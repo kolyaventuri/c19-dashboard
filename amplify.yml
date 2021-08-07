@@ -9,7 +9,7 @@ frontend:
       commands:
         - ENV=$BUILD_ENV npm run build
   artifacts:
-    baseDirectory: ./out
+    baseDirectory: .next
     files:
       - '**/*'
   cache:

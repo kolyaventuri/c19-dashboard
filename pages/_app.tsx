@@ -11,7 +11,9 @@ const App = ({Component, pageProps}: AppProps): JSX.Element => (
           <div className="flex">
             <div className="flex-shrink-0 flex items-center select-none">
               <h1 className="text-3xl font-bold">
-                C<span className="text-blue-500">19</span>
+                <a href="/">
+                  C<span className="text-blue-500">19</span>.kolyaventuri.dev
+                </a>
               </h1>
             </div>
           </div>
@@ -22,7 +24,7 @@ const App = ({Component, pageProps}: AppProps): JSX.Element => (
     <div className="py-10">
       <header>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold leading-tight text-gray-900">
+          <h1 className="text-3xl font-bold leading-tight text-gray-900 py-2">
             U.S. COVID Data Tracker
           </h1>
           <p className="text-gray-700">

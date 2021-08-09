@@ -20,7 +20,7 @@ const Slider = ({values, onChange: onChangeCallback}: Props): JSX.Element => {
       <ReactSlider
         step={1}
         min={1}
-        max={values.length - 2}
+        max={values.length - 1}
         values={values}
         className="w-full h-3 pr-2 my-4 bg-gray-200 rounded-md cursor-grab"
         thumbClassName="cursor-pointer absolute w-5 h-5 cursor-grab bg-blue-500 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 -top-1"

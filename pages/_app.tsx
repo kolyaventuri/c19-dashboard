@@ -24,10 +24,10 @@ const App = ({Component, pageProps}: AppProps): JSX.Element => (
     <div className="py-10">
       <header>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold leading-tight text-gray-900 py-2">
+          <h1 className="text-5xl font-bold leading-tight text-gray-900 py-2">
             U.S. COVID Data Tracker
           </h1>
-          <p className="text-gray-700">
+          <p className="text-gray-700 text-xl pb-4">
             A Covid-19 data tracker, extending the data available on{' '}
             <a
               href="https://covidactnow.org"
@@ -39,6 +39,7 @@ const App = ({Component, pageProps}: AppProps): JSX.Element => (
             </a>
             .
           </p>
+          <hr />
         </div>
       </header>
       <main>

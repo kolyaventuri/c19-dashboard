@@ -1,13 +1,14 @@
+import {test} from 'mocha';
+import {expect} from 'chai';
 import React from 'react';
-import test from 'ava';
 import {shallow} from 'enzyme';
 
 import Home from '../../pages';
 
 const getComponent = () => shallow(<Home />);
 
-test('renders a head component', (t) => {
+test('renders a head component', () => {
   const tree = getComponent();
 
-  t.is(tree.find('Head').length, 1);
+  expect(tree.find('Head')).to.have.lengthOf(1);
 });

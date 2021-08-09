@@ -15,15 +15,15 @@ const Slider = ({values, onChange: onChangeCallback}: Props): JSX.Element => {
   };
 
   return (
-    <div className="w-full flex justify-center">
-      <p>{value}</p>
+    <div className="w-full">
+      <p className="text-2xl font-bold text-center">{value}</p>
       <ReactSlider
         step={1}
-        min={0}
-        max={values.length - 1}
+        min={1}
+        max={values.length - 2}
         values={values}
         className="w-full h-3 pr-2 my-4 bg-gray-200 rounded-md cursor-grab"
-        thumbClassName="absolute w-5 h-5 cursor-grab bg-indigo-500 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 -top-2px"
+        thumbClassName="cursor-pointer absolute w-5 h-5 cursor-grab bg-blue-500 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 -top-1"
         onChange={(value_: number) => {
           onChange(value_);
         }}

@@ -1,39 +1,33 @@
 import * as React from 'react';
-import { STATE_RISK_TIMESERIES } from '../constants/urls';
-import Map from './map';
+import {STATE_RISK_TIMESERIES} from '../constants/urls';
 import states from '../constants/states.json';
+import Map from './map';
 import Slider from './slider';
 
-const colorScale = [
-  '#00D474',
-  '#FFC900',
-  '#FF9600',
-  '#D9002C',
-  '#790019'
-];
+const colorScale = ['#00D474', '#FFC900', '#FF9600', '#D9002C', '#790019'];
 
 interface Data {
   range: string[];
-  data: {
-    [state: string]: number[];
-  };
+  data: Record<string, number[]>;
 }
 
-type StatesArray = {id: string, val: string}[];
+type StatesArray = Array<{id: string; val: string}>;
 
-type OneDayOfData = {id: string, value: number}[];
+type OneDayOfData = Array<{id: string; value: number}>;
 const transformData = (data: Data, date: string): OneDayOfData => {
   const abbrs = Object.keys(data.data);
   const result: OneDayOfData = [];
   for (const state of abbrs) {
-    const id = (states as StatesArray).find(s => s.id === state)?.val ?? '0';
+    const id = (states as StatesArray).find((s) => s.id === state)?.val ?? '0';
+
     result.push({
       id,
-      value: data.data[state][date]
+      value: data.data[state][date] as number
     });
   }
+
   return result;
-} 
+};
 
 const RiskMap = (): JSX.Element => {
   const [didError, setDidError] = React.useState(false);
@@ -43,38 +37,36 @@ const RiskMap = (): JSX.Element => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      try {
-        const result = await fetch(STATE_RISK_TIMESERIES);
-        const json = await result.json();
+      const result = await fetch(STATE_RISK_TIMESERIES);
+      const json = (await result.json()) as Data;
 
-        setData(json);
-      } catch (error: unknown) {
+      setData(json);
+    };
+
+    if (!data && !didError) {
+      fetchData().catch((error: unknown) => {
         console.error(error);
         setDidError(true);
-      }
-    };
-    
-    if (!data && !didError) { 
-      fetchData();
+      });
     }
 
     if (data) {
-      setMapData(transformData(data as Data, date ?? data.range[0]));
+      setMapData(transformData(data, date ?? data.range[0]));
     }
   }, [data, didError, date]);
 
   const onChange = (value: string | number) => {
     setDate(value as string);
-  }
+  };
 
   if (didError) {
     return <p>An error occurred</p>;
   }
 
-  if (data) {
+  if (data && mapData) {
     return (
       <>
-        <Slider values={data.range} onChange={onChange}/>
+        <Slider values={data.range} onChange={onChange} />
         <Map data={mapData} colorScale={colorScale} />
       </>
     );

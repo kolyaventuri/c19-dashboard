@@ -8,7 +8,7 @@ class Home extends React.Component {
     return (
       <div>
         <Head>
-          <title>Covid Data</title>
+          <title>C19 Tracker</title>
         </Head>
         <section className="section">
           <RiskMap />

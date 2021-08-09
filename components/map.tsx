@@ -28,7 +28,7 @@ const Map = ({data, colorScale}: Props): JSX.Element => {
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill={scale(cur ? cur.value : 0)}
+                fill={cur ? scale(cur.value) : '#EEE'}
               />
             );
           })

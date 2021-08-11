@@ -136,7 +136,7 @@ const RiskMap = (): JSX.Element => {
 
   return (
     <div className="py-6">
-      <h2 className="text-3xl text-blue-500 font-bold">State Risk Over Time</h2>
+      <h2 className="text-3xl text-blue-500 font-bold">Risk Over Time</h2>
       <p className="text-gray-600">
         Use the slider below to scrub through state risk levels over time.
       </p>

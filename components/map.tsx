@@ -1,8 +1,9 @@
 import * as React from 'react';
 import {ComposableMap, Geographies, Geography} from 'react-simple-maps';
 import {scaleQuantize} from 'd3-scale';
-import {GEO_URL} from '../constants/urls';
+import {GEO_URL_STATES, GEO_URL_COUNTIES} from '../constants/urls';
 import {Geography as GeoType} from '../@types';
+import {DataSource} from './types';
 
 interface MapData {
   id: string;
@@ -12,15 +13,21 @@ interface MapData {
 interface Props {
   data: MapData[];
   colorScale: string[];
+  source: DataSource;
 }
-const Map = ({data, colorScale}: Props): JSX.Element => {
+const url = {
+  state: GEO_URL_STATES,
+  county: GEO_URL_COUNTIES
+};
+
+const Map = ({data, colorScale, source}: Props): JSX.Element => {
   const scale = scaleQuantize<string>()
     .domain([0, colorScale.length - 1])
     .range(colorScale);
 
   return (
     <ComposableMap projection="geoAlbersUsa">
-      <Geographies geography={GEO_URL}>
+      <Geographies geography={url[source]}>
         {({geographies}: {geographies: GeoType[]}) =>
           geographies.map((geo) => {
             const cur = data.find((s) => s.id === geo.id);

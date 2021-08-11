@@ -116,7 +116,6 @@ const RiskMap = (): JSX.Element => {
     }
 
     if (data && mapData) {
-      console.log(mapData);
       return (
         <>
           <SourceSelector

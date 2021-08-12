@@ -6,7 +6,7 @@ import {scaleQuantize} from 'd3-scale';
 import proxyquire from 'proxyquire';
 
 import RealMap from '../../components/map';
-import { GEO_URL } from '../../constants/urls';
+import { GEO_URL_STATES } from '../../constants/urls';
 
 const colorScale = ['#FFF', '#AAA', '#000'];
 
@@ -21,6 +21,7 @@ const render = (props = {}) => shallow(
   <Map
     data={data}
     colorScale={colorScale}
+    source='state'
     {...props}
   />
 );
@@ -61,7 +62,7 @@ test('renders a nested Geographies map, with the correct geography', () => {
   const map = tree.find('ComposableMap');
   const geos = map.find('Geographies');
   expect(geos).to.have.lengthOf(1);
-  expect(geos.props()).to.have.property('geography', GEO_URL);
+  expect(geos.props()).to.have.property('geography', GEO_URL_STATES);
 });
 
 test('renders nested geographies based on the data', () => {

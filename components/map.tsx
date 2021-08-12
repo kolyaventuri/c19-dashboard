@@ -3,15 +3,10 @@ import {ComposableMap, Geographies, Geography} from 'react-simple-maps';
 import {scaleQuantize} from 'd3-scale';
 import {GEO_URL_STATES, GEO_URL_COUNTIES} from '../constants/urls';
 import {Geography as GeoType} from '../@types';
-import {DataSource} from './types';
-
-interface MapData {
-  id: string;
-  value: number;
-}
+import {DataSource, OneDayOfData} from './types';
 
 interface Props {
-  data: MapData[];
+  data: OneDayOfData;
   colorScale: string[];
   source: DataSource;
 }
@@ -30,12 +25,12 @@ const Map = ({data, colorScale, source}: Props): JSX.Element => {
       <Geographies geography={url[source]}>
         {({geographies}: {geographies: GeoType[]}) =>
           geographies.map((geo) => {
-            const cur = data.find((s) => s.id === geo.id);
+            const cur: typeof data[number] = data[geo.id];
             return (
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill={cur ? scale(cur.value) : '#EEE'}
+                fill={Number.isFinite(cur) ? scale(cur) : '#EEE'}
               />
             );
           })

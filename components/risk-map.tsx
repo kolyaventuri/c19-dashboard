@@ -1,16 +1,15 @@
 import * as React from 'react';
 import {STATE_RISK_TIMESERIES, COUNTY_RISK_TIMESERIES} from '../constants/urls';
-import states from '../constants/states.json';
 import Map from './map';
 import Slider from './slider';
-import {DataSource} from './types';
+import {DataSource, OneDayOfData} from './types';
 import SourceSelector from './source-selector';
 
 const colorScale = ['#00D474', '#FFC900', '#FF9600', '#D9002C', '#790019'];
 
 interface DataEntry {
   range: string[];
-  data: Record<string, number[]> | Record<string, Record<string, number[]>>;
+  data: Array<Record<string, number>>;
 }
 
 interface Data {
@@ -18,38 +17,13 @@ interface Data {
   county?: DataEntry;
 }
 
-type StatesArray = Array<{id: string; val: string}>;
-
-type OneDayOfData = Array<{id: string; value: number}>;
-const transformData = (
-  data: DataEntry,
-  date: string,
-  source: DataSource
-): OneDayOfData => {
-  const abbrs = Object.keys(data.data);
-  const result: OneDayOfData = [];
-  if (source === 'state') {
-    for (const state of abbrs) {
-      const id =
-        (states as StatesArray).find((s) => s.id === state)?.val ?? '0';
-
-      result.push({
-        id,
-        value: data.data[state][date] as number
-      });
-    }
-  } else {
-    for (const fips of abbrs) {
-      result.push({
-        id: fips,
-        value: (data.data[fips] as Record<string, number[]>).risks[
-          date
-        ] as number
-      });
-    }
+const transformData = (data: DataEntry, date: string): OneDayOfData => {
+  const key = data.range.indexOf(date);
+  if (key > -1) {
+    return data.data[key];
   }
 
-  return result;
+  return {};
 };
 
 const getUrl = (source: DataSource): string => {
@@ -95,7 +69,7 @@ const RiskMap = (): JSX.Element => {
     }
 
     if (data) {
-      setMapData(transformData(data, date ?? data.range[1], source));
+      setMapData(transformData(data, date ?? data.range[1]));
     }
   }, [data, didError, date, source]);
 
@@ -111,6 +85,7 @@ const RiskMap = (): JSX.Element => {
   };
 
   const renderContent = () => {
+    console.log(data, date);
     if (didError) {
       return <p>An error occurred</p>;
     }

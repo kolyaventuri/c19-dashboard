@@ -53,7 +53,7 @@ const App = ({Component, pageProps}: AppProps): JSX.Element => {
             <Component {...pageProps} />
           </div>
         </main>
-        <footer className="absolute bottom-1 right-2">
+        <footer className="fixed bottom-1 right-2">
           <Blagl onClick={openBlagl} />
         </footer>
       </div>

@@ -65,7 +65,7 @@ const Map = ({data, colorScale, source, bounds, dataType}: Props): JSX.Element =
                     setTooltipContent(content);
                   }}
                   onMouseLeave={() => {
-                    //setTooltipContent(null);
+                    setTooltipContent(null);
                   }}
                   style={{
                     hover: {

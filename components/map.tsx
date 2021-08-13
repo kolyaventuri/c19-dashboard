@@ -80,7 +80,7 @@ const Map = ({data, colorScale, source, bounds, dataType}: Props): JSX.Element =
           }
         </Geographies>
       </ComposableMap>
-      <ReactTooltip>{tooltipContent}</ReactTooltip>
+      {tooltipContent && <ReactTooltip>{tooltipContent}</ReactTooltip>}
     </div>
   );
 };

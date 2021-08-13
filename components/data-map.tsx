@@ -140,7 +140,7 @@ const DataMap = (): JSX.Element => {
           />
           <Scale colors={colorScale} type={dataType} domain={bounds[dataType]}/>
           <Slider values={data.range} onChange={onChange} />
-          <Map data={mapData} colorScale={colorScale} source={source} bounds={bounds[dataType]} />
+          <Map data={mapData} colorScale={colorScale} source={source} bounds={bounds[dataType]} dataType={dataType} />
         </div>
       );
     }

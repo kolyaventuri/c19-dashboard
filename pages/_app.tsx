@@ -27,7 +27,7 @@ const App = ({Component, pageProps}: AppProps): JSX.Element => {
         </div>
       </Disclosure>
 
-      <div className="py-10">
+      <div className="py-10 px-2">
         <header>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h1 className="text-5xl font-bold leading-tight text-gray-900 py-2">

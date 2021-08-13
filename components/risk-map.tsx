@@ -85,7 +85,6 @@ const RiskMap = (): JSX.Element => {
   };
 
   const renderContent = () => {
-    console.log(data, date);
     if (didError) {
       return <p>An error occurred</p>;
     }
@@ -112,7 +111,7 @@ const RiskMap = (): JSX.Element => {
     <div className="py-6">
       <h2 className="text-3xl text-blue-500 font-bold">Risk Over Time</h2>
       <p className="text-gray-600">
-        Use the slider below to scrub through state risk levels over time.
+        Use the slider below to scrub through risk levels over time.
       </p>
       {renderContent()}
     </div>

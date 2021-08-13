@@ -85,7 +85,6 @@ const RiskMap = (): JSX.Element => {
   };
 
   const renderContent = () => {
-    console.log(data, date);
     if (didError) {
       return <p>An error occurred</p>;
     }

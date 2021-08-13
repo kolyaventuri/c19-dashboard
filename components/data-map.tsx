@@ -5,6 +5,7 @@ import Slider from './slider';
 import {DataSource, OneDayOfData, DataType} from './types';
 import SourceSelector from './source-selector';
 import Dropdown from './dropdown';
+import Scale from './scale';
 
 const colorScale = ['#00D474', '#FFC900', '#FF9600', '#D9002C', '#790019'];
 
@@ -130,16 +131,17 @@ const DataMap = (): JSX.Element => {
 
     if (data && mapData) {
       return (
-        <>
+        <div>
           <SourceSelector
             value={source}
             onChange={(newSource) => {
               updateSource(newSource);
             }}
           />
+          <Scale colors={colorScale} type={dataType} domain={bounds[dataType]}/>
           <Slider values={data.range} onChange={onChange} />
-          <Map data={mapData} colorScale={colorScale} source={source} bounds={bounds[dataType]} />
-        </>
+          <Map data={mapData} colorScale={colorScale} source={source} bounds={bounds[dataType]} dataType={dataType} />
+        </div>
       );
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 
-import RiskMap from '../components/risk-map';
+import DataMap from '../components/data-map';
 
 class Home extends React.Component {
   render(): JSX.Element {
@@ -11,7 +11,7 @@ class Home extends React.Component {
           <title>C19 Tracker</title>
         </Head>
         <section className="section">
-          <RiskMap />
+          <DataMap />
         </section>
       </div>
     );

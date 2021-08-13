@@ -7,5 +7,5 @@ export const BASE_URL =
     ? 'https://c19.api.blagl.xyz/v1'
     : 'http://localhost:3000/v1';
 
-export const STATE_RISK_TIMESERIES = `${BASE_URL}/states/risk/timeseries`;
-export const COUNTY_RISK_TIMESERIES = `${BASE_URL}/counties/risk/timeseries`;
+export const STATE_TIMESERIES = `${BASE_URL}/states/{type}/timeseries`;
+export const COUNTY_TIMESERIES = `${BASE_URL}/counties/{type}/timeseries`;

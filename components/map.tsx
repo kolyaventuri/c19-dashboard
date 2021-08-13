@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ComposableMap, Geographies, Geography} from 'react-simple-maps';
-import {scaleQuantize} from 'd3-scale';
+import {scaleQuantile} from 'd3-scale';
 import {GEO_URL_STATES, GEO_URL_COUNTIES} from '../constants/urls';
 import {Geography as GeoType} from '../@types';
 import {DataSource, OneDayOfData} from './types';
@@ -9,15 +9,16 @@ interface Props {
   data: OneDayOfData;
   colorScale: string[];
   source: DataSource;
+  bounds: number[];
 }
 const url = {
   state: GEO_URL_STATES,
   county: GEO_URL_COUNTIES
 };
 
-const Map = ({data, colorScale, source}: Props): JSX.Element => {
-  const scale = scaleQuantize<string>()
-    .domain([0, colorScale.length - 1])
+const Map = ({data, colorScale, source, bounds}: Props): JSX.Element => {
+  const scale = scaleQuantile<string>()
+    .domain(bounds)
     .range(colorScale);
 
   return (
@@ -30,7 +31,7 @@ const Map = ({data, colorScale, source}: Props): JSX.Element => {
               <Geography
                 key={geo.rsmKey}
                 geography={geo}
-                fill={Number.isFinite(cur) ? scale(cur) : '#EEE'}
+                fill={Number.isFinite(cur) && cur > -1 ? scale(cur) : '#EEE'}
               />
             );
           })

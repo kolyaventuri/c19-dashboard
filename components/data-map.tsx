@@ -49,7 +49,7 @@ const dataCache: Data = {};
 type Labels = {
   title: string;
   name: string;
-}
+};
 const labels: Record<string, Labels> = {
   risk: {title: 'Risk', name: 'risk levels'},
   r0: {title: 'Infection Rate', name: 'infection rate'},
@@ -61,7 +61,7 @@ const items = [
   {value: 'risk', displayName: 'Risk Levels'},
   {value: 'r0', displayName: 'Infection Rate (R_t)'},
   {value: 'density', displayName: 'Case Density (per 100k)'},
-  {value: 'positivity', displayName: 'Positivty Rate'},
+  {value: 'positivity', displayName: 'Positivty Rate'}
 ];
 
 type Bounds = number[];
@@ -69,7 +69,7 @@ const bounds: Record<string, Bounds> = {
   risk: [0, 5],
   r0: [0, 0.9, 1.1, 1.4, 1.7],
   density: [1, 10, 25, 75, 90],
-  positivity: [0, 3, 10, 20, 25].map(n => n / 100)
+  positivity: [0, 3, 10, 20, 25].map((n) => n / 100)
 };
 
 const DataMap = (): JSX.Element => {
@@ -115,7 +115,7 @@ const DataMap = (): JSX.Element => {
     setData(null);
     setDidError(false);
     setDataType(value as DataType);
-  }
+  };
 
   const updateSource = (value: DataSource) => {
     setData(null);
@@ -138,9 +138,19 @@ const DataMap = (): JSX.Element => {
               updateSource(newSource);
             }}
           />
-          <Scale colors={colorScale} type={dataType} domain={bounds[dataType]}/>
+          <Scale
+            colors={colorScale}
+            type={dataType}
+            domain={bounds[dataType]}
+          />
           <Slider values={data.range} onChange={onChange} />
-          <Map data={mapData} colorScale={colorScale} source={source} bounds={bounds[dataType]} dataType={dataType} />
+          <Map
+            data={mapData}
+            colorScale={colorScale}
+            source={source}
+            bounds={bounds[dataType]}
+            dataType={dataType}
+          />
         </div>
       );
     }
@@ -151,11 +161,14 @@ const DataMap = (): JSX.Element => {
   return (
     <div className="py-6">
       <div>
-        <Dropdown items={items} onChange={onDropdownChange}/>
+        <Dropdown items={items} onChange={onDropdownChange} />
       </div>
-      <h2 className="text-3xl text-blue-500 font-bold">{labels[dataType].title} Over Time</h2>
+      <h2 className="text-3xl text-blue-500 font-bold">
+        {labels[dataType].title} Over Time
+      </h2>
       <p className="text-gray-600">
-        Use the slider below to scrub through {labels[dataType].name} over time. Grey areas indicate a lack of available data.
+        Use the slider below to scrub through {labels[dataType].name} over time.
+        Grey areas indicate a lack of available data.
       </p>
       {renderContent()}
     </div>

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {debounce} from 'debounce';
 
 import {STATE_TIMESERIES, COUNTY_TIMESERIES} from '../constants/urls';
-import {trackEvent} from '../utils/tracking';
+import {trackEvent as doTrackEvent} from '../utils/tracking';
 import Map from './map';
 import Slider from './slider';
 import {DataSource, OneDayOfData, DataType} from './types';
@@ -75,6 +75,22 @@ const bounds: Record<string, Bounds> = {
   positivity: [0, 3, 10, 20, 25].map((n) => n / 100)
 };
 
+const trackEvent = (type: 'slider' | 'dropdown', value: string) => {
+  const isSlider = type === 'slider';
+  const action = isSlider
+    ? 'slider.date.change'
+    : 'dropdown.selectedItem.change';
+  const name = isSlider ? 'date' : 'dataType';
+  doTrackEvent({
+    action,
+    params: {
+      [name]: value
+    }
+  });
+};
+
+const logChange = debounce(trackEvent, 500);
+
 const DataMap = (): JSX.Element => {
   const [didError, setDidError] = React.useState(false);
   const [data, setData] = React.useState<DataEntry | null>(null);
@@ -102,7 +118,7 @@ const DataMap = (): JSX.Element => {
       fetchData().catch((error: unknown) => {
         console.error(error);
         setDidError(true);
-        trackEvent({
+        doTrackEvent({
           action: 'error.impression',
           params: {error: (error as Error).message}
         });
@@ -114,27 +130,13 @@ const DataMap = (): JSX.Element => {
     }
   }, [data, didError, date, source, dataType]);
 
-  const logChange = debounce((type: 'slider' | 'dropdown', value: string) => {
-    const isSlider = type === 'slider';
-    const action = isSlider
-      ? 'slider.date.change'
-      : 'dropdown.selectedItem.change';
-    const name = isSlider ? 'date' : 'dataType';
-    trackEvent({
-      action,
-      params: {
-        [name]: value
-      }
-    });
-  }, 500);
-
   const onChange = (value: string) => {
     logChange('slider', value);
     setDate(value);
   };
 
   const onDropdownChange = (value: string) => {
-    logChange('dropdown', value);
+    trackEvent('dropdown', value);
     setData(null);
     setDidError(false);
     setDataType(value as DataType);

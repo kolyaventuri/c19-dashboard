@@ -11,5 +11,9 @@ export const trackEvent = ({
   action: string;
   params: Record<string, any>;
 }) => {
-  window.gtag('event', action, params);
+  if (process.env.NODE_ENV === 'production') {
+    window.gtag('event', action, params);
+  } else {
+    console.log('[TRACK EVENT]', {action, params});
+  }
 };

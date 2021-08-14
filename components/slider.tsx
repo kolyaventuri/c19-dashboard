@@ -3,7 +3,7 @@ import ReactSlider from 'react-slider';
 
 interface Props {
   values: Array<string | number>;
-  onChange?: (newValue: string | number) => void;
+  onChange?: (newValue: string) => void;
 }
 
 const Slider = ({values, onChange: onChangeCallback}: Props): JSX.Element => {

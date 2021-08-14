@@ -19,13 +19,13 @@ const App = ({Component, pageProps}: AppProps): JSX.Element => {
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env
             .GA_TRACKING_ID!}`}
         />
-        <script>{`
+        <script dangerouslySetInnerHTML={{ __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', '${process.env.GA_TRACKING_ID!}');
-        `}</script>
+        `}}/>
       </Head>
       <div className="min-h-screen bg-white">
         <Disclosure as="nav" className="bg-white border-b border-gray-200">
